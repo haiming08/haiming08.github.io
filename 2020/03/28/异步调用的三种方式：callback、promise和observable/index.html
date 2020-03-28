@@ -5,13 +5,17 @@
   
 
   
-  <title>Archives: 2020 | Hexo</title>
+  <title>异步调用的三种方式：callback、promise和observable | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
+  <meta name="description" content="异步调用的三种方式：callback、promise和observable Promise： promise.then（）  订阅一个值 promise不是lazy的，没有then()也会执行 promise是不能取消的 Observable： observable.subscribe（）  连续订阅多个值 observable是lazy的，没有subscribe()不会发起请求 observab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异步调用的三种方式：callback、promise和observable">
+<meta property="og:url" content="http://yoursite.com/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="异步调用的三种方式：callback、promise和observable Promise： promise.then（）  订阅一个值 promise不是lazy的，没有then()也会执行 promise是不能取消的 Observable： observable.subscribe（）  连续订阅多个值 observable是lazy的，没有subscribe()不会发起请求 observab">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-28T06:24:36.723Z">
+<meta property="article:modified_time" content="2020-03-28T06:24:36.981Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -62,59 +66,60 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/" class="archive-article-date">
-  <time datetime="2020-03-28T06:24:36.723Z" itemprop="datePublished">Mar 28</time>
+        <section id="main"><article id="post-异步调用的三种方式：callback、promise和observable" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/" class="article-date">
+  <time datetime="2020-03-28T06:24:36.723Z" itemprop="datePublished">2020-03-28</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/">异步调用的三种方式：callback、promise和observable</a>
+    <h1 class="article-title" itemprop="name">
+      异步调用的三种方式：callback、promise和observable
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/03/23/hello-world/" class="archive-article-date">
-  <time datetime="2020-03-23T12:48:29.488Z" itemprop="datePublished">Mar 23</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/23/hello-world/">Hello World.</a>
-    </h1>
-  
+        <p>异步调用的三种方式：callback、promise和observable</p>
+<p>Promise：</p>
+<p>promise.then（）  订阅一个值</p>
+<p>promise不是lazy的，没有then()也会执行</p>
+<p>promise是不能取消的</p>
+<p>Observable：</p>
+<p>observable.subscribe（）  连续订阅多个值</p>
+<p>observable是lazy的，没有subscribe()不会发起请求</p>
+<p>observable可以通过unsubscribe()取消</p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/" data-id="ck8b8ddi40000z4f3dymb2dq0" class="article-share-link">Share</a>
+      
+      
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/03/23/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World.</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         
