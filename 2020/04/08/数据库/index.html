@@ -5,13 +5,17 @@
   
 
   
-  <title>GEO</title>
+  <title>数据库 | GEO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="GEO">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="mongodb 1.适合非结构化数据进行状态更新操作，修改json数据的字段 2.数据模型不确定 3.自动分片 4.每个mongodb文档16M大小的限制 5.不需要复杂join 6.内嵌 7.NoSQL更专注于水平扩展，在数据量不断增加的情况下，仍能够保持查询速度在一定的水平上 influxdb measurement+tags+values 适合关系表的业务数据，与时序数据不方便进行join">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库">
+<meta property="og:url" content="http://yoursite.com/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
 <meta property="og:site_name" content="GEO">
+<meta property="og:description" content="mongodb 1.适合非结构化数据进行状态更新操作，修改json数据的字段 2.数据模型不确定 3.自动分片 4.每个mongodb文档16M大小的限制 5.不需要复杂join 6.内嵌 7.NoSQL更专注于水平扩展，在数据量不断增加的情况下，仍能够保持查询速度在一定的水平上 influxdb measurement+tags+values 适合关系表的业务数据，与时序数据不方便进行join">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-08T10:52:50.957Z">
+<meta property="article:modified_time" content="2020-04-09T23:30:34.056Z">
 <meta property="article:author" content="zhongkai xie">
 <meta name="twitter:card" content="summary">
   
@@ -62,9 +66,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-数据库" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-数据库" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
   <time datetime="2020-04-08T10:52:50.957Z" itemprop="datePublished">2020-04-08</time>
@@ -77,8 +79,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    <h1 class="article-title" itemprop="name">
+      数据库
     </h1>
   
 
@@ -115,112 +117,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-异步调用的三种方式：callback、promise和observable" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/" class="article-date">
-  <time datetime="2020-03-28T06:24:36.723Z" itemprop="datePublished">2020-03-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/">异步调用的三种方式：callback、promise和observable</a>
-    </h1>
+    <a href="/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">异步调用的三种方式：callback、promise和observable</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>异步调用的三种方式：callback、promise和observable</p>
-<p>Promise：</p>
-<p>promise.then（）  订阅一个值</p>
-<p>promise不是lazy的，没有then()也会执行</p>
-<p>promise是不能取消的</p>
-<p>Observable：</p>
-<p>observable.subscribe（）  连续订阅多个值</p>
-<p>observable是lazy的，没有subscribe()不会发起请求</p>
-<p>observable可以通过unsubscribe()取消</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/" data-id="ck8b8ddi40000z4f3dymb2dq0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/23/hello-world/" class="article-date">
-  <time datetime="2020-03-23T12:48:29.488Z" itemprop="datePublished">2020-03-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/23/hello-world/">Hello World.</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>git、nodejs</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i -g hexo</span><br><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
-
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>1.新建haiming08.github.io的仓库<br>2.ssh解决本地和服务器的连接问题<br> ssh-keygen -t rsa -C “<a href="mailto:xiezhongkai08@126.com">xiezhongkai08@126.com</a>“，找到.ssh/id_rsa.pub文件，复制内容，配置github<br> 验证：ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
-<p>_config.yml中配置<br>deploy:<br>  type: git<br>  repository: <a href="mailto:git@github.com">git@github.com</a>:haiming08/haiming08.github.io.git<br>  branch: master</p>
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/23/hello-world/" data-id="ck84jaw5m000000f3b8t7a65r" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
