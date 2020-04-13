@@ -5,17 +5,17 @@
   
 
   
-  <title>数据库 | GEO</title>
+  <title>osgi | GEO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="mongodb 1.适合非结构化数据进行状态更新操作，修改json数据的字段 2.数据模型不确定 3.自动分片 4.每个mongodb文档16M大小的限制 5.不需要复杂join。通过反范式避免join 6.内嵌 7.NoSQL更专注于水平扩展，在数据量不断增加的情况下，仍能够保持查询速度在一定的水平上。Sharding是比分表更强的水平扩展方式。 influxdb measurement+tag">
+  <meta name="description" content="osgi：Open Service Gateway  Initiative1.Eclipse集成了osgi容器Equinox 2.导出包：导出接口，会将接口的实现注册到容器    导入包：导入接口，根据接口再容器中寻找实现 3.问题： 不管存不存在消费端，接口的实现都会存在。某些service接口的实现比较耗费资源，最好是真正使用的 时候创建，不用的时候销毁 改进方法： 使用ServiceFact">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库">
-<meta property="og:url" content="http://yoursite.com/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
+<meta property="og:title" content="osgi">
+<meta property="og:url" content="http://yoursite.com/2020/04/13/osgi/index.html">
 <meta property="og:site_name" content="GEO">
-<meta property="og:description" content="mongodb 1.适合非结构化数据进行状态更新操作，修改json数据的字段 2.数据模型不确定 3.自动分片 4.每个mongodb文档16M大小的限制 5.不需要复杂join。通过反范式避免join 6.内嵌 7.NoSQL更专注于水平扩展，在数据量不断增加的情况下，仍能够保持查询速度在一定的水平上。Sharding是比分表更强的水平扩展方式。 influxdb measurement+tag">
+<meta property="og:description" content="osgi：Open Service Gateway  Initiative1.Eclipse集成了osgi容器Equinox 2.导出包：导出接口，会将接口的实现注册到容器    导入包：导入接口，根据接口再容器中寻找实现 3.问题： 不管存不存在消费端，接口的实现都会存在。某些service接口的实现比较耗费资源，最好是真正使用的 时候创建，不用的时候销毁 改进方法： 使用ServiceFact">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-08T10:52:50.957Z">
-<meta property="article:modified_time" content="2020-04-13T13:04:23.464Z">
+<meta property="article:published_time" content="2020-04-13T13:05:15.526Z">
+<meta property="article:modified_time" content="2020-04-13T13:35:20.021Z">
 <meta property="article:author" content="zhongkai xie">
 <meta name="twitter:card" content="summary">
   
@@ -66,10 +66,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-数据库" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-osgi" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
-  <time datetime="2020-04-08T10:52:50.957Z" itemprop="datePublished">2020-04-08</time>
+    <a href="/2020/04/13/osgi/" class="article-date">
+  <time datetime="2020-04-13T13:05:15.526Z" itemprop="datePublished">2020-04-13</time>
 </a>
     
   </div>
@@ -80,7 +80,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      数据库
+      osgi
     </h1>
   
 
@@ -88,27 +88,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>mongodb</strong></p>
-<p>1.适合非结构化数据进行状态更新操作，修改json数据的字段</p>
-<p>2.数据模型不确定</p>
-<p>3.自动分片</p>
-<p>4.每个mongodb文档16M大小的限制</p>
-<p>5.不需要复杂join。通过反范式避免join</p>
-<p>6.内嵌</p>
-<p>7.NoSQL更专注于水平扩展，在数据量不断增加的情况下，仍能够保持查询速度在一定的水平上。Sharding是比分表更强的水平扩展方式。</p>
-<p><strong>influxdb</strong></p>
-<p>measurement+tags+values</p>
-<p>适合关系表的业务数据，与时序数据不方便进行join</p>
-<p>series：measurement、tag set 和 retension policy取值相同</p>
-<p><strong>timescaledb</strong></p>
-<p> pg扩展插件</p>
-<p><strong>postgresql</strong></p>
-<p>当表本身大小超过了机器物理内存实际大小时，可以考虑分区</p>
+        <h3 id="osgi：Open-Service-Gateway-Initiative"><a href="#osgi：Open-Service-Gateway-Initiative" class="headerlink" title="osgi：Open Service Gateway  Initiative"></a><strong>osgi</strong>：Open Service Gateway  Initiative</h3><p>1.Eclipse集成了osgi容器Equinox</p>
+<p>2.导出包：导出接口，会将接口的实现注册到容器</p>
+<p>   导入包：导入接口，根据接口再容器中寻找实现</p>
+<p>3.问题：</p>
+<p>不管存不存在消费端，接口的实现都会存在。某些service接口的实现比较耗费资源，最好是真正使用的 时候创建，不用的时候销毁</p>
+<p>改进方法：</p>
+<p>使用ServiceFactory接口的实现代替service接口的实现到osgi容器中去注册，只有其他bundle请求该服务时（根据接口名称获取服务），才会由ServiceFactory实现类来处理请求并返回一个新的service接口实现。</p>
+<p>4.services跟踪</p>
+<p>继承ServiceTracker类后，将service接口名传入构造函数，当bundle注册或取消注册service接口时，ServiceTracker的addingService方法和removeService方法会被调用</p>
+<p>5.同一个接口下有多个实现注册，如何处理？</p>
+<p>根据service的等级，在Service注册时的属性中可指定SERVICE_RANKING</p>
+<p>等级也相同，看谁的PID小</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ck8yh9cfz0000wwf3ew2r44b7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/04/13/osgi/" data-id="ck8yisc1u0000yof32vyya0fd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -117,19 +113,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/04/13/osgi/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          osgi
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">异步调用的三种方式：callback、promise和observable</div>
+      <div class="article-nav-title">数据库</div>
     </a>
   
 </nav>
