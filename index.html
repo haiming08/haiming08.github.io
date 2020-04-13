@@ -91,18 +91,15 @@
 <p>2.数据模型不确定</p>
 <p>3.自动分片</p>
 <p>4.每个mongodb文档16M大小的限制</p>
-<p>5.不需要复杂join</p>
+<p>5.不需要复杂join。通过反范式避免join</p>
 <p>6.内嵌</p>
-<p>7.NoSQL更专注于水平扩展，在数据量不断增加的情况下，仍能够保持查询速度在一定的水平上</p>
+<p>7.NoSQL更专注于水平扩展，在数据量不断增加的情况下，仍能够保持查询速度在一定的水平上。Sharding是比分表更强的水平扩展方式。</p>
 <p><strong>influxdb</strong></p>
 <p>measurement+tags+values</p>
 <p>适合关系表的业务数据，与时序数据不方便进行join</p>
 <p>series：measurement、tag set 和 retension policy取值相同</p>
 <p><strong>timescaledb</strong></p>
 <p> pg扩展插件</p>
-<p>这里介绍的时序数据库timescaledb直接在pg库上加时序扩展，是不是比引入mongodb要方便</p>
-<p>灯杆的环境监测数据，结构基本是固定的，对非结构化要求并不高，存储之后也不会再去改，用的时候也是查询最新的，时间序列特征比较明显的数据，并且能够直接写sql语句跟普通的关系表进行关联操作</p>
-<p>如果查询速度、表之间的关联操作，timescaledb都能解决，那我们还用mongodb是不是就只剩下追求mongodb的集群部署，使得数据存储量能够更大？我们需要存这么多数据吗</p>
 <p><strong>postgresql</strong></p>
 <p>当表本身大小超过了机器物理内存实际大小时，可以考虑分区</p>
 
