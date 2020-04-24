@@ -156,7 +156,7 @@
 <p>2、mongodb不用填用户名密码</p>
 <p>表b_device_command数据总量700万</p>
 <p>（1）时间段数量统计，索引字段create_time</p>
-<p><img src="C:%5CUsers%5Ckai%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1587109895480.png" alt="1587109895480"></p>
+<p><code>select count（*） from b_device_command where create_ time &gt; &#39;2020-04-16 02:57:42.64&#39; and create_time &lt; &#39;2020-04-16 05:57:42.64&#39;</code></p>
 <table>
 <thead>
 <tr>
@@ -180,7 +180,7 @@
 </tr>
 </tbody></table>
 <p>（2）记录检索</p>
-<p><img src="C:%5CUsers%5Ckai%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1587110109971.png" alt="1587110109971"></p>
+<p><code>select  * from b_device_command where create_ time &gt; &#39;2020-04-16 02:57:42.64&#39; and create_time &lt; &#39;2020-04-16 05:57:42.64&#39; order by create_time desc limit 20</code></p>
 <table>
 <thead>
 <tr>
@@ -224,7 +224,7 @@
 </tr>
 </tbody></table>
 <p>（4）表连接排序查询</p>
-<p><img src="C:%5CUsers%5Ckai%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1587364432480.png" alt="1587364432480"></p>
+<p><code>select device.device_name,cmd.* from pgwithtimescaledb.b_device_command cmd,b_device_info device where device.device_id = cmd.th_device_id and cmd.create_ time &gt; &#39;2020-04-16 02:57:42.64&#39; and cmd.create_time &lt; &#39;2020-04-16 05:57:42.64&#39; order by cmd.create_time desc limit 20</code></p>
 <table>
 <thead>
 <tr>

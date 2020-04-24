@@ -14,14 +14,10 @@
 <meta property="og:site_name" content="GEO">
 <meta property="og:description" content="mongodb 1.适合非结构化数据进行状态更新操作，修改json数据的字段 2.数据模型不确定 3.自动分片 4.每个mongodb文档16M大小的限制 5.不需要复杂join。通过反范式避免join 6.内嵌 7.NoSQL更专注于水平扩展，在数据量不断增加的情况下，仍能够保持查询速度在一定的水平上。Sharding是比分表更强的水平扩展方式。 influxdb measurement+tag">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:%5CUsers%5Ckai%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1587109895480.png">
-<meta property="og:image" content="c:%5CUsers%5Ckai%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1587110109971.png">
-<meta property="og:image" content="c:%5CUsers%5Ckai%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1587364432480.png">
 <meta property="article:published_time" content="2020-04-08T10:52:50.957Z">
-<meta property="article:modified_time" content="2020-04-20T07:16:52.037Z">
+<meta property="article:modified_time" content="2020-04-24T00:59:08.238Z">
 <meta property="article:author" content="zhongkai xie">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:%5CUsers%5Ckai%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1587109895480.png">
   
     <link rel="alternate" href="/atom.xml" title="GEO" type="application/atom+xml">
   
@@ -113,7 +109,7 @@
 <p>2、mongodb不用填用户名密码</p>
 <p>表b_device_command数据总量700万</p>
 <p>（1）时间段数量统计，索引字段create_time</p>
-<p><img src="C:%5CUsers%5Ckai%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1587109895480.png" alt="1587109895480"></p>
+<p><code>select count（*） from b_device_command where create_ time &gt; &#39;2020-04-16 02:57:42.64&#39; and create_time &lt; &#39;2020-04-16 05:57:42.64&#39;</code></p>
 <table>
 <thead>
 <tr>
@@ -137,7 +133,7 @@
 </tr>
 </tbody></table>
 <p>（2）记录检索</p>
-<p><img src="C:%5CUsers%5Ckai%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1587110109971.png" alt="1587110109971"></p>
+<p><code>select  * from b_device_command where create_ time &gt; &#39;2020-04-16 02:57:42.64&#39; and create_time &lt; &#39;2020-04-16 05:57:42.64&#39; order by create_time desc limit 20</code></p>
 <table>
 <thead>
 <tr>
@@ -181,7 +177,7 @@
 </tr>
 </tbody></table>
 <p>（4）表连接排序查询</p>
-<p><img src="C:%5CUsers%5Ckai%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1587364432480.png" alt="1587364432480"></p>
+<p><code>select device.device_name,cmd.* from pgwithtimescaledb.b_device_command cmd,b_device_info device where device.device_id = cmd.th_device_id and cmd.create_ time &gt; &#39;2020-04-16 02:57:42.64&#39; and cmd.create_time &lt; &#39;2020-04-16 05:57:42.64&#39; order by cmd.create_time desc limit 20</code></p>
 <table>
 <thead>
 <tr>
