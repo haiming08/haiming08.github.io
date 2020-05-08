@@ -5,17 +5,13 @@
   
 
   
-  <title>osgi | GEO</title>
+  <title>Archives: 2020/5 | GEO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="osgi：Open Service Gateway  Initiative1.Eclipse集成了osgi容器Equinox 2.导出包：导出接口，会将接口的实现注册到容器    导入包：导入接口，根据接口再容器中寻找实现 3.问题： 不管存不存在消费端，接口的实现都会存在。某些service接口的实现比较耗费资源，最好是真正使用的 时候创建，不用的时候销毁 改进方法： 使用ServiceFact">
-<meta property="og:type" content="article">
-<meta property="og:title" content="osgi">
-<meta property="og:url" content="http://yoursite.com/2020/04/13/osgi/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="GEO">
+<meta property="og:url" content="http://yoursite.com/archives/2020/05/index.html">
 <meta property="og:site_name" content="GEO">
-<meta property="og:description" content="osgi：Open Service Gateway  Initiative1.Eclipse集成了osgi容器Equinox 2.导出包：导出接口，会将接口的实现注册到容器    导入包：导入接口，根据接口再容器中寻找实现 3.问题： 不管存不存在消费端，接口的实现都会存在。某些service接口的实现比较耗费资源，最好是真正使用的 时候创建，不用的时候销毁 改进方法： 使用ServiceFact">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-13T13:05:15.526Z">
-<meta property="article:modified_time" content="2020-04-13T13:38:55.168Z">
 <meta property="article:author" content="zhongkai xie">
 <meta name="twitter:card" content="summary">
   
@@ -66,73 +62,40 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-osgi" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/13/osgi/" class="article-date">
-  <time datetime="2020-04-13T13:05:15.526Z" itemprop="datePublished">2020-04-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      osgi
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2020/05/06/authentication/" class="archive-article-date">
+  <time datetime="2020-05-06T06:22:43.899Z" itemprop="datePublished">May 6</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/05/06/authentication/">authentication</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="osgi：Open-Service-Gateway-Initiative"><a href="#osgi：Open-Service-Gateway-Initiative" class="headerlink" title="osgi：Open Service Gateway  Initiative"></a><strong>osgi</strong>：Open Service Gateway  Initiative</h3><p>1.Eclipse集成了osgi容器Equinox</p>
-<p>2.导出包：导出接口，会将接口的实现注册到容器</p>
-<p>   导入包：导入接口，根据接口再容器中寻找实现</p>
-<p>3.问题：</p>
-<p>不管存不存在消费端，接口的实现都会存在。某些service接口的实现比较耗费资源，最好是真正使用的 时候创建，不用的时候销毁</p>
-<p>改进方法：</p>
-<p>使用ServiceFactory接口的实现代替service接口的实现到osgi容器中去注册，只有其他bundle请求该服务时（根据接口名称获取服务），才会由ServiceFactory实现类来处理请求并返回一个新的service接口实现。</p>
-<p>4.services跟踪</p>
-<p>继承ServiceTracker类后，将service接口名传入构造函数，当bundle注册或取消注册service接口时，ServiceTracker的addingService方法和removeService方法会被调用</p>
-<p>5.同一个接口下有多个实现注册，如何处理？</p>
-<p>根据service的等级，在Service注册时的属性中可指定SERVICE_RANKING</p>
-<p>等级也相同，看谁的PID小</p>
-<p>6.每个bundle定义了自己的classloader</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/13/osgi/" data-id="ck8yisc1u0000yof32vyya0fd" class="article-share-link">Share</a>
-      
-      
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/05/06/authentication/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          authentication
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">数据库</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
+
 
 </section>
         

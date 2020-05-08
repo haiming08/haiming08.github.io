@@ -64,6 +64,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-authentication" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/06/authentication/" class="article-date">
+  <time datetime="2020-05-06T06:22:43.899Z" itemprop="datePublished">2020-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/06/authentication/">authentication</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.JWT 是tocken format，OAuth是认证协议，可以使用JWT作为token</p>
+<p>JWT：无法作废已颁布的令牌</p>
+<p>2.</p>
+<p>XSS:cross site scripting   跨站脚本攻击</p>
+<p>如果将JWT token存放到LocalStorage中，恶意脚本会将token取出</p>
+<p>防御：一定要在后台做检查，一般前后台都做检查，过滤特殊字符</p>
+<p>CSRF:cross site request forgery  跨站请求伪造</p>
+<p>如果使用cookie的话，恶意网站上发起请求时，cookie会自动添加</p>
+<p>防御：验证码、referer检查、添加自定义token属性并验证</p>
+<p>3.cookie</p>
+<p>添加HttpOnly=true，则cookie不能被js获取到</p>
+<p>添加Secure=true，则cookie只能使用https协议发送</p>
+<p>4.</p>
+<p>客户端的SingleSignOutFilter根据cas center回调时传递的ticket，删除sessionMappingStorage（存在于客户端的一个Map）中的session</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/06/authentication/" data-id="ck9xhwqgi000058f32n2538q1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-osgi" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/04/13/osgi/" class="article-date">
@@ -379,7 +429,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
     </div>
   </div>
 
@@ -390,6 +440,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/05/06/authentication/">authentication</a>
+          </li>
         
           <li>
             <a href="/2020/04/13/osgi/">osgi</a>
