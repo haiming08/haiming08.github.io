@@ -64,6 +64,92 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-idea启动失败原因" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/09/idea%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0/" class="article-date">
+  <time datetime="2020-05-09T07:30:21.306Z" itemprop="datePublished">2020-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/09/idea%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0/">idea启动失败原因</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>IDEA启动失败</p>
+<p>1.resource文件夹中缺少Meta-INF文件</p>
+<p>2.yml文件不识别，文件标识没有变成叶子形状</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/09/idea%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0/" data-id="cka1tw2bo0000mcf34w5l3e3c" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CAS and JWT" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/09/CAS%20and%20JWT/" class="article-date">
+  <time datetime="2020-05-09T02:21:11.690Z" itemprop="datePublished">2020-05-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/09/CAS%20and%20JWT/">CAS and JWT</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CAS和JWT</p>
+<p>cas无法避免csrf，引入jwt；token存储在localStorage中会带来xss攻击，为了避免xss，jwt的token有效时间要短，即使暴露危险性也很小</p>
+<p><strong>cas是为了实现统一登陆，统一登陆基础上的安全控制无法避免CSRF，而jwt才是获得访问权限的通用安全控制手段，要想访问必须有jwt</strong></p>
+<p>当前方式：</p>
+<p>1.没有jwt时，先被cas拦截；有cas，需要校验jwt；有jwt，跳过cas</p>
+<p>2.前端访问后台，需要jwt</p>
+<p>​    对外提供A系统接口，通过A系统的后台访问B系统的后台，A系统需要去获取token。通过传给A系统token，如果A系统执行时间过长，会出现访问B系统时token过期的情况。</p>
+<p>3.第一次访问的时候，由于服务端无法区分界面访问还是接口访问，如果不提供任何凭证，会被cas拦截，但是如果提供了jwt，则会跳过cas</p>
+<p>如果能够区分界面访问还是接口访问（最佳实践），</p>
+<p>1.界面访问：先被cas拦截，cas通过后需要进行jwt校验</p>
+<p>2.接口访问：先被jwt拦截，jwt通过则跳过cas</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/09/CAS%20and%20JWT/" data-id="cka1tw2cy0001mcf3cozi63vo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-authentication" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/05/06/authentication/" class="article-date">
@@ -100,6 +186,20 @@
 <p>添加Secure=true，则cookie只能使用https协议发送</p>
 <p>4.</p>
 <p>客户端的SingleSignOutFilter根据cas center回调时传递的ticket，删除sessionMappingStorage（存在于客户端的一个Map）中的session</p>
+<p>5.临时cookie：Session cookie、会话cookie</p>
+<p>不设置过期时间，表示cookie生命周期为浏览器会话期间，只要关闭浏览器窗口，cookie就消失了</p>
+<p>6.永久cookie：Persistent cookie</p>
+<p>设置了过期时间，浏览器会把cookie存储在硬盘上，关闭后再次打开浏览器，这些cookie依然有效直到超过设定的过期时间</p>
+<p>7.Set-Cookie：包含在响应请求的头部中，用于在客户端创建一个Cookie</p>
+<p>   Cookie：由客户端发送，包含在HTTP请求的头部中</p>
+<p>8.常见csrf_token的两种方式：</p>
+<p>(1)Synchronizer Token Pattern(STP)   </p>
+<p>使用表单的隐藏域hidden，服务器端对每次请求都会更换csrf_token</p>
+<p>(2)Cookie-to-header token：Double Submit Cookie</p>
+<p>服务端为每个session生成一个csrf_token，保存到Set-Cookie中，客户端在每次请求时Cookie中的csrf_token设置到http request header中的X-CSRF_Token属性中</p>
+<p>9.无法获取首次页面加载的response </p>
+<p>10.浏览器同源策略(Same Origin Policy)，阻止恶意网站CSRF读取cookie中的值</p>
+<p>但是如果HttpOnly为false，XSS攻击可以越过同源策略，将cookie取出来存储到txt文件中</p>
 
       
     </div>
@@ -442,6 +542,14 @@
       <ul>
         
           <li>
+            <a href="/2020/05/09/idea%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0/">idea启动失败原因</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/09/CAS%20and%20JWT/">CAS and JWT</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/06/authentication/">authentication</a>
           </li>
         
@@ -451,14 +559,6 @@
         
           <li>
             <a href="/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/">异步调用的三种方式：callback、promise和observable</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/23/hello-world/">Hello World.</a>
           </li>
         
       </ul>
