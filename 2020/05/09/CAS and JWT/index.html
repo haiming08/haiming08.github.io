@@ -7,15 +7,15 @@
   
   <title>CAS and JWT | GEO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CAS和JWT cas无法避免csrf，引入jwt；token存储在localStorage中会带来xss攻击，为了避免xss，jwt的token有效时间要短，即使暴露危险性也很小 cas是为了实现统一登陆，统一登陆基础上的安全控制无法避免CSRF，而jwt才是获得访问权限的通用安全控制手段，要想访问必须有jwt 当前方式： 1.没有jwt时，先被cas拦截；有cas，需要校验jwt；有jwt，跳">
+  <meta name="description" content="CAS和JWT CAS概念： TGC:Ticket Granting Cookie TGT:Ticket Granting Ticket ST:Service Ticket CAS center认证成功后，会创建一个Session，同时向浏览器返回一个名称为CASTGC的cookie，这个cookie中包含可以确定对应Session的TGT，同时浏览器重定向到之前请求的路径，包含唯一参数ST 应用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CAS and JWT">
 <meta property="og:url" content="http://yoursite.com/2020/05/09/CAS%20and%20JWT/index.html">
 <meta property="og:site_name" content="GEO">
-<meta property="og:description" content="CAS和JWT cas无法避免csrf，引入jwt；token存储在localStorage中会带来xss攻击，为了避免xss，jwt的token有效时间要短，即使暴露危险性也很小 cas是为了实现统一登陆，统一登陆基础上的安全控制无法避免CSRF，而jwt才是获得访问权限的通用安全控制手段，要想访问必须有jwt 当前方式： 1.没有jwt时，先被cas拦截；有cas，需要校验jwt；有jwt，跳">
+<meta property="og:description" content="CAS和JWT CAS概念： TGC:Ticket Granting Cookie TGT:Ticket Granting Ticket ST:Service Ticket CAS center认证成功后，会创建一个Session，同时向浏览器返回一个名称为CASTGC的cookie，这个cookie中包含可以确定对应Session的TGT，同时浏览器重定向到之前请求的路径，包含唯一参数ST 应用">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-09T02:21:11.690Z">
-<meta property="article:modified_time" content="2020-05-11T01:46:38.363Z">
+<meta property="article:modified_time" content="2020-05-12T00:53:40.087Z">
 <meta property="article:author" content="zhongkai xie">
 <meta name="twitter:card" content="summary">
   
@@ -89,6 +89,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>CAS和JWT</p>
+<p>CAS概念：</p>
+<p>TGC:Ticket Granting Cookie</p>
+<p>TGT:Ticket Granting Ticket</p>
+<p>ST:Service Ticket</p>
+<p>CAS center认证成功后，会创建一个Session，同时向浏览器返回一个名称为CASTGC的cookie，这个cookie中包含可以确定对应Session的TGT，同时浏览器重定向到之前请求的路径，包含唯一参数ST</p>
+<p>应用App1对应一个ST，跳转到APP2时根据传递的TGC会找到对应的Session，会为APP2产生新的ST</p>
+<p>第一次访问带有CAS客户端的系统会有3次请求：</p>
+<p>1.直接访问地址</p>
+<p>2.带有ST作为参数访问地址：会在客户端生成Session</p>
+<p>3.带有JSESSIONID的cookie访问地址</p>
 <p>cas无法避免csrf，引入jwt；token存储在localStorage中会带来xss攻击，为了避免xss，jwt的token有效时间要短，即使暴露危险性也很小</p>
 <p><strong>cas是为了实现统一登陆，统一登陆基础上的安全控制无法避免CSRF，而jwt才是获得访问权限的通用安全控制手段，要想访问必须有jwt</strong></p>
 <p>当前方式：</p>
@@ -97,8 +107,15 @@
 <p>​    对外提供A系统接口，通过A系统的后台访问B系统的后台，A系统需要去获取token。通过传给A系统token，如果A系统执行时间过长，会出现访问B系统时token过期的情况。</p>
 <p>3.第一次访问的时候，由于服务端无法区分界面访问还是接口访问，如果不提供任何凭证，会被cas拦截，但是如果提供了jwt，则会跳过cas</p>
 <p>如果能够区分界面访问还是接口访问（最佳实践），</p>
-<p>1.界面访问：先被cas拦截，cas通过后需要进行jwt校验</p>
+<p>1.界面访问：先被cas拦截，cas通过后需要进行jwt校验，避免CSRF</p>
 <p>2.接口访问：先被jwt拦截，jwt通过则跳过cas</p>
+<p>如果能够区分界面访问还是接口访问，</p>
+<p>1.界面访问：先被cas拦截，cas通过后需要进行jwt校验，避免CSRF</p>
+<p>2.接口访问：先被jwt拦截，jwt通过则跳过cas</p>
+<p>如果到每一个项目里面去校验cas，session只存在于其中某一个微服务模块，则会产生session共享问题</p>
+<p>如果没有jwt，验证不通过，返回jwt不存在信息；如果有jwt，校验jwt，jwt通过并且cookie有效，则继续进行，否则跳转到cas</p>
+<p>smartpole当前实现：</p>
+<p>没有jwt，转到登录界面，登录成功后会刷新token，之后靠验证jwt来验证权限</p>
 
       
     </div>
@@ -161,6 +178,10 @@
       <ul>
         
           <li>
+            <a href="/2020/05/12/OWASP/">OWASP</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/09/idea%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0/">idea启动失败原因</a>
           </li>
         
@@ -174,10 +195,6 @@
         
           <li>
             <a href="/2020/04/13/osgi/">osgi</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
           </li>
         
       </ul>
