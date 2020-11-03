@@ -64,6 +64,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-定时任务的高效处理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/11/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%AB%98%E6%95%88%E5%A4%84%E7%90%86/" class="article-date">
+  <time datetime="2020-10-11T00:16:16.593Z" itemprop="datePublished">2020-10-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/11/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%AB%98%E6%95%88%E5%A4%84%E7%90%86/">定时任务的高效处理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="定时任务的高效处理"><a href="#定时任务的高效处理" class="headerlink" title="定时任务的高效处理"></a>定时任务的高效处理</h2><p>1.rabbitmq、rocketmq的延时队列</p>
+<p>订单30分钟后失效，每发起一个订单，发送一条延迟消息</p>
+<p>2.redis的zset结构</p>
+<p>score的取值为时间的到期时间，每次zRangeByScore通过当前时间判定取出第一个元素，如果成功取出则通过zrem将该元素从zset删除。</p>
+<p>分布式场景下，</p>
+<p>（1）zRangeByScore、zrem需要写到lua脚本，作为原子化操作。即使已经原子化，如果要屏蔽其他相同处理，还是需要添加redisson分布式锁。</p>
+<p>（2）redisson分布式锁</p>
+<p>3.redisson的RDelayedQueue</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/10/11/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%AB%98%E6%95%88%E5%A4%84%E7%90%86/" data-id="ckh18k81b00000kf35bil2332" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-WebMVCConfigurer" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/05/29/WebMVCConfigurer/" class="article-date">
@@ -176,8 +220,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>OWASP</p>
+        <p><strong>1.OWASP</strong></p>
 <p>Open Web Application Security Project</p>
+<p><strong>2.SETNX</strong></p>
+<p>set if not exists</p>
+<p><strong>3.AJP</strong></p>
+<p> Apache <em>Jserv</em> protocol</p>
 
       
     </div>
@@ -602,63 +650,12 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/03/23/hello-world/" class="article-date">
-  <time datetime="2020-03-23T12:48:29.488Z" itemprop="datePublished">2020-03-23</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/23/hello-world/">Hello World.</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>git、nodejs</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i -g hexo</span><br><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
-
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>1.新建haiming08.github.io的仓库<br>2.ssh解决本地和服务器的连接问题<br> ssh-keygen -t rsa -C “<a href="mailto:xiezhongkai08@126.com">xiezhongkai08@126.com</a>“，找到.ssh/id_rsa.pub文件，复制内容，配置github<br> 验证：ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
-<p>_config.yml中配置<br>deploy:<br>  type: git<br>  repository: <a href="mailto:git@github.com">git@github.com</a>:haiming08/haiming08.github.io.git<br>  branch: master</p>
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/23/hello-world/" data-id="ck84jaw5m000000f3b8t7a65r" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+  </nav>
 
 </section>
         
@@ -676,7 +673,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
     </div>
   </div>
 
@@ -687,6 +684,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/10/11/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%AB%98%E6%95%88%E5%A4%84%E7%90%86/">定时任务的高效处理</a>
+          </li>
         
           <li>
             <a href="/2020/05/29/WebMVCConfigurer/">WebMVCConfigurer</a>
@@ -702,10 +703,6 @@
         
           <li>
             <a href="/2020/05/09/idea%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0/">idea启动失败原因</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/09/CAS%20and%20JWT/">CAS and JWT</a>
           </li>
         
       </ul>

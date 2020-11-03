@@ -5,11 +5,11 @@
   
 
   
-  <title>Archives: 2020/4 | GEO</title>
+  <title>GEO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="GEO">
-<meta property="og:url" content="http://yoursite.com/archives/2020/04/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="GEO">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="zhongkai xie">
@@ -64,57 +64,68 @@
       <div class="outer">
         <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/13/osgi/" class="archive-article-date">
-  <time datetime="2020-04-13T13:05:15.526Z" itemprop="datePublished">Apr 13</time>
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/23/hello-world/" class="article-date">
+  <time datetime="2020-03-23T12:48:29.488Z" itemprop="datePublished">2020-03-23</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/13/osgi/">osgi</a>
+      <a class="article-title" href="/2020/03/23/hello-world/">Hello World.</a>
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="archive-article-date">
-  <time datetime="2020-04-08T10:52:50.957Z" itemprop="datePublished">Apr 8</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-    </h1>
-  
+        <p>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>git、nodejs</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i -g hexo</span><br><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
 
-    </header>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>1.新建haiming08.github.io的仓库<br>2.ssh解决本地和服务器的连接问题<br> ssh-keygen -t rsa -C “<a href="mailto:xiezhongkai08@126.com">xiezhongkai08@126.com</a>“，找到.ssh/id_rsa.pub文件，复制内容，配置github<br> 验证：ssh -T <a href="mailto:git@github.com">git@github.com</a></p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
+<p>_config.yml中配置<br>deploy:<br>  type: git<br>  repository: <a href="mailto:git@github.com">git@github.com</a>:haiming08/haiming08.github.io.git<br>  branch: master</p>
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/23/hello-world/" data-id="ck84jaw5m000000f3b8t7a65r" class="article-share-link">Share</a>
+      
+      
+    </footer>
   </div>
+  
 </article>
-  
-  
-    </div></section>
+
+
   
 
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 </section>
         
