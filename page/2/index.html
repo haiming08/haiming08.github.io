@@ -64,6 +64,199 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-数据库" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+  <time datetime="2020-04-08T10:52:50.957Z" itemprop="datePublished">2020-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>mongodb</strong></p>
+<p>1.适合非结构化数据进行状态更新操作，修改json数据的字段</p>
+<p>2.数据模型不确定</p>
+<p>3.自动分片</p>
+<p>4.每个mongodb文档16M大小的限制</p>
+<p>5.不需要复杂join。通过反范式避免join</p>
+<p>6.内嵌</p>
+<p>7.NoSQL更专注于水平扩展，在数据量不断增加的情况下，仍能够保持查询速度在一定的水平上。Sharding是比分表更强的水平扩展方式。</p>
+<p><strong>influxdb</strong></p>
+<p>measurement+tags+values</p>
+<p>适合关系表的业务数据，与时序数据不方便进行join</p>
+<p>series：measurement、tag set 和 retension policy取值相同</p>
+<p><strong>timescaledb</strong></p>
+<p> pg扩展插件</p>
+<p><img src="C:%5CUsers%5Ckai%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20201103193959797.png" alt="image-20201103193959797"></p>
+<p><strong>postgresql</strong></p>
+<p>当表本身大小超过了机器物理内存实际大小时，可以考虑分区</p>
+<p>测试机10.10.70.231   </p>
+<p>1、PG用户名密码：postgres/postgres</p>
+<p>2、mongodb不用填用户名密码</p>
+<p>表b_device_command数据总量700万</p>
+<p>（1）时间段数量统计，索引字段create_time</p>
+<p><code>select count（*） from b_device_command where create_ time &gt; &#39;2020-04-16 02:57:42.64&#39; and create_time &lt; &#39;2020-04-16 05:57:42.64&#39;</code></p>
+<table>
+<thead>
+<tr>
+<th>数据库</th>
+<th>有索引</th>
+<th>无索引</th>
+<th>pg添加timescaledb扩展</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mongodb</td>
+<td>0.921s</td>
+<td>10.132s</td>
+<td></td>
+</tr>
+<tr>
+<td>postgres</td>
+<td>0.514s</td>
+<td>37.729s</td>
+<td>0.560s</td>
+</tr>
+</tbody></table>
+<p>（2）记录检索</p>
+<p><code>select  * from b_device_command where create_ time &gt; &#39;2020-04-16 02:57:42.64&#39; and create_time &lt; &#39;2020-04-16 05:57:42.64&#39; order by create_time desc limit 20</code></p>
+<table>
+<thead>
+<tr>
+<th>数据库</th>
+<th>有索引</th>
+<th>无索引</th>
+<th>pg添加timescaledb扩展</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mongodb</td>
+<td>0.292s</td>
+<td>3.714s</td>
+<td></td>
+</tr>
+<tr>
+<td>postgres</td>
+<td>0.035s</td>
+<td>2.131s</td>
+<td>0.002s</td>
+</tr>
+</tbody></table>
+<p>（3）700万数据的基础上，继续插入数据的速度</p>
+<table>
+<thead>
+<tr>
+<th>数据库</th>
+<th>有索引</th>
+<th>pg添加timescaledb扩展</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mongodb</td>
+<td>5281条/s</td>
+<td></td>
+</tr>
+<tr>
+<td>postgres</td>
+<td>1182条/s</td>
+<td>4855条/s</td>
+</tr>
+</tbody></table>
+<p>（4）表连接排序查询</p>
+<p><code>select device.device_name,cmd.* from pgwithtimescaledb.b_device_command cmd,b_device_info device where device.device_id = cmd.th_device_id and cmd.create_ time &gt; &#39;2020-04-16 02:57:42.64&#39; and cmd.create_time &lt; &#39;2020-04-16 05:57:42.64&#39; order by cmd.create_time desc limit 20</code></p>
+<table>
+<thead>
+<tr>
+<th>数据库</th>
+<th>有索引</th>
+<th>pg添加timescaledb扩展</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mongodb</td>
+<td>151.016s</td>
+<td></td>
+</tr>
+<tr>
+<td>postgres</td>
+<td>1.022s</td>
+<td>0.008s</td>
+</tr>
+</tbody></table>
+<p>mongodb插入数据的速度可以一直维持在一个很高的水平上，表连接排序查询很慢，如果不排序时间尚可（0.590s）</p>
+<p>timescaledb的优势主要是表自动实现了分区，同时对时间字段添加了索引</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/08/%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ck8yh9cfz0000wwf3ew2r44b7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-异步调用的三种方式：callback、promise和observable" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/" class="article-date">
+  <time datetime="2020-03-28T06:24:36.723Z" itemprop="datePublished">2020-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/">异步调用的三种方式：callback、promise和observable</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>异步调用的三种方式：callback、promise和observable</p>
+<p>Promise：</p>
+<p>promise.then（）  订阅一个值</p>
+<p>promise不是lazy的，没有then()也会执行</p>
+<p>promise是不能取消的</p>
+<p>Observable：</p>
+<p>observable.subscribe（）  连续订阅多个值</p>
+<p>observable是lazy的，没有subscribe()不会发起请求</p>
+<p>observable可以通过unsubscribe()取消</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/28/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9Acallback%E3%80%81promise%E5%92%8Cobservable/" data-id="ck8b8ddi40000z4f3dymb2dq0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/23/hello-world/" class="article-date">
@@ -143,7 +336,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
     </div>
   </div>
 
@@ -156,6 +349,14 @@
       <ul>
         
           <li>
+            <a href="/2020/11/05/javascript%E6%A8%A1%E5%9D%97%E5%8C%96/">javascript模块化</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/03/%E5%B8%B8%E8%A7%84%E6%93%8D%E4%BD%9C/">常规操作</a>
+          </li>
+        
+          <li>
             <a href="/2020/10/11/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%AB%98%E6%95%88%E5%A4%84%E7%90%86/">定时任务的高效处理</a>
           </li>
         
@@ -165,14 +366,6 @@
         
           <li>
             <a href="/2020/05/22/MyBatis%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98%E5%92%8C%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98/">MyBatis一级缓存和二级缓存</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/12/OWASP/">OWASP</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/09/idea%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0/">idea启动失败原因</a>
           </li>
         
       </ul>

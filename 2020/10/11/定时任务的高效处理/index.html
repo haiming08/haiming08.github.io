@@ -7,15 +7,15 @@
   
   <title>定时任务的高效处理 | GEO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="定时任务的高效处理1.rabbitmq、rocketmq的延时队列 订单30分钟后失效，每发起一个订单，发送一条延迟消息 2.redis的zset结构 score的取值为时间的到期时间，每次zRangeByScore通过当前时间判定取出第一个元素，如果成功取出则通过zrem将该元素从zset删除。 分布式场景下， （1）zRangeByScore、zrem需要写到lua脚本，作为原子化操作。即使已">
+  <meta name="description" content="定时任务的高效处理1.rabbitmq、rocketmq的延时队列 订单30分钟后失效，每发起一个订单，发送一条延迟消息 rabbitmq死信队列：TTL(Time To Live)、DLX(Dead Letter Exchange) 2.redis的zset结构 （Hello. Z is as in XYZ, so the idea is, sets with another dimension">
 <meta property="og:type" content="article">
 <meta property="og:title" content="定时任务的高效处理">
 <meta property="og:url" content="http://yoursite.com/2020/10/11/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%AB%98%E6%95%88%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="GEO">
-<meta property="og:description" content="定时任务的高效处理1.rabbitmq、rocketmq的延时队列 订单30分钟后失效，每发起一个订单，发送一条延迟消息 2.redis的zset结构 score的取值为时间的到期时间，每次zRangeByScore通过当前时间判定取出第一个元素，如果成功取出则通过zrem将该元素从zset删除。 分布式场景下， （1）zRangeByScore、zrem需要写到lua脚本，作为原子化操作。即使已">
+<meta property="og:description" content="定时任务的高效处理1.rabbitmq、rocketmq的延时队列 订单30分钟后失效，每发起一个订单，发送一条延迟消息 rabbitmq死信队列：TTL(Time To Live)、DLX(Dead Letter Exchange) 2.redis的zset结构 （Hello. Z is as in XYZ, so the idea is, sets with another dimension">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-11T00:16:16.593Z">
-<meta property="article:modified_time" content="2020-10-11T01:36:06.523Z">
+<meta property="article:modified_time" content="2020-11-03T11:37:21.975Z">
 <meta property="article:author" content="zhongkai xie">
 <meta name="twitter:card" content="summary">
   
@@ -88,14 +88,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="定时任务的高效处理"><a href="#定时任务的高效处理" class="headerlink" title="定时任务的高效处理"></a>定时任务的高效处理</h2><p>1.rabbitmq、rocketmq的延时队列</p>
+        <h2 id="定时任务的高效处理"><a href="#定时任务的高效处理" class="headerlink" title="定时任务的高效处理"></a>定时任务的高效处理</h2><p><strong>1.rabbitmq、rocketmq的延时队列</strong></p>
 <p>订单30分钟后失效，每发起一个订单，发送一条延迟消息</p>
-<p>2.redis的zset结构</p>
+<p>rabbitmq死信队列：TTL(Time To Live)、DLX(Dead Letter Exchange)</p>
+<p><strong>2.redis的zset结构</strong></p>
+<p>（Hello. Z is as in XYZ, so the idea is, sets with another dimension: the order. It’s a far association…  I know :)）</p>
 <p>score的取值为时间的到期时间，每次zRangeByScore通过当前时间判定取出第一个元素，如果成功取出则通过zrem将该元素从zset删除。</p>
 <p>分布式场景下，</p>
-<p>（1）zRangeByScore、zrem需要写到lua脚本，作为原子化操作。即使已经原子化，如果要屏蔽其他相同处理，还是需要添加redisson分布式锁。</p>
-<p>（2）redisson分布式锁</p>
-<p>3.redisson的RDelayedQueue</p>
+<p>（1）zRangeByScore、zrem需要写到lua脚本，作为原子化操作。</p>
+<p>（2）redisson分布式锁。key超时键通知的情况下，如果要屏蔽其他相同处理，还是需要添加redisson分布式锁。</p>
+<p><strong>3.redisson的RDelayedQueue</strong></p>
+<p><strong>4.JDK内置的延迟队列DelayedQueue</strong></p>
+<p><strong>5.时间轮算法</strong></p>
+<p>10w定时任务，如何高效触发超时</p>
+<p>Timer timer = new HashedWheelTimer()</p>
 
       
     </div>
@@ -108,6 +114,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/11/03/%E5%B8%B8%E8%A7%84%E6%93%8D%E4%BD%9C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          常规操作
+        
+      </div>
+    </a>
   
   
     <a href="/2020/05/29/WebMVCConfigurer/" id="article-nav-older" class="article-nav-link-wrap">
@@ -136,7 +151,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
     </div>
   </div>
 
@@ -149,6 +164,14 @@
       <ul>
         
           <li>
+            <a href="/2020/11/05/javascript%E6%A8%A1%E5%9D%97%E5%8C%96/">javascript模块化</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/03/%E5%B8%B8%E8%A7%84%E6%93%8D%E4%BD%9C/">常规操作</a>
+          </li>
+        
+          <li>
             <a href="/2020/10/11/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E7%9A%84%E9%AB%98%E6%95%88%E5%A4%84%E7%90%86/">定时任务的高效处理</a>
           </li>
         
@@ -158,14 +181,6 @@
         
           <li>
             <a href="/2020/05/22/MyBatis%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98%E5%92%8C%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98/">MyBatis一级缓存和二级缓存</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/12/OWASP/">OWASP</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/09/idea%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0/">idea启动失败原因</a>
           </li>
         
       </ul>
