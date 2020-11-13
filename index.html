@@ -64,6 +64,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Angular" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/13/Angular/" class="article-date">
+  <time datetime="2020-11-13T06:40:18.087Z" itemprop="datePublished">2020-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/13/Angular/">Angular</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.An entry component is any component that Angular loads imperatively by type.</p>
+<p>A component loaded declaratively via its selector is not an entry component.</p>
+<p>The bootstrapped root <code>AppComponent</code> is an entry component. True, its selector matches an element tag in index.html. But <code>index.html</code> isn’t a component template and the <code>AppComponent</code> selector doesn’t match an element in any component template.</p>
+<p>Angular automatically adds the following types of components to the module’s <code>entryComponents</code>:</p>
+<ul>
+<li>The component in the <code>@NgModule.bootstrap</code> list.</li>
+<li>Components referenced in router configuration.</li>
+</ul>
+<p>You don’t have to mention these components explicitly, although doing so is harmless.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/11/13/Angular/" data-id="ckhg1gueu00003gf3byypasoa" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-javascript模块化" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/11/05/javascript%E6%A8%A1%E5%9D%97%E5%8C%96/" class="article-date">
@@ -343,6 +388,21 @@
 <p>set if not exists</p>
 <p><strong>3.AJP</strong></p>
 <p> Apache <em>Jserv</em> protocol</p>
+<p><strong>4.AMQP、MQTT、STOMP</strong></p>
+<p>Advanced Message Queuing Protocol</p>
+<p>Message Queuing Telemetry Transport 消息队列遥测传输协议</p>
+<p>Simple Text-Orientated Messaging Protocol</p>
+<p>同 HTTP 在 TCP 套接字上添加请求-响应模型层一样，STOMP 在 WebSocket 之上提供了一个基于帧的线路格式层，用来定义消息语义</p>
+<p><strong>5.JNDI</strong></p>
+<p>Java Naming and Directory Interface java命名和目录接口</p>
+<p>命名由名字和分隔符构成，如/usr/hello、telchina.com</p>
+<p><strong>6.DNS</strong></p>
+<p>Domain Name System</p>
+<p><strong>7.RDB、AOF</strong></p>
+<p>Redis Database </p>
+<p>保存快照，形成dump.rdb文件，默认方式</p>
+<p>Append Only File</p>
+<p>在文件中追加执行的每一条命令</p>
 
       
     </div>
@@ -524,57 +584,6 @@
 
 
   
-    <article id="post-osgi" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/13/osgi/" class="article-date">
-  <time datetime="2020-04-13T13:05:15.526Z" itemprop="datePublished">2020-04-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/13/osgi/">osgi</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="osgi：Open-Service-Gateway-Initiative"><a href="#osgi：Open-Service-Gateway-Initiative" class="headerlink" title="osgi：Open Service Gateway  Initiative"></a><strong>osgi</strong>：Open Service Gateway  Initiative</h3><p>1.Eclipse集成了osgi容器Equinox</p>
-<p>2.导出包：导出接口，会将接口的实现注册到容器</p>
-<p>   导入包：导入接口，根据接口再容器中寻找实现</p>
-<p>3.问题：</p>
-<p>不管存不存在消费端，接口的实现都会存在。某些service接口的实现比较耗费资源，最好是真正使用的 时候创建，不用的时候销毁</p>
-<p>改进方法：</p>
-<p>使用ServiceFactory接口的实现代替service接口的实现到osgi容器中去注册，只有其他bundle请求该服务时（根据接口名称获取服务），才会由ServiceFactory实现类来处理请求并返回一个新的service接口实现。</p>
-<p>4.services跟踪</p>
-<p>继承ServiceTracker类后，将service接口名传入构造函数，当bundle注册或取消注册service接口时，ServiceTracker的addingService方法和removeService方法会被调用</p>
-<p>5.同一个接口下有多个实现注册，如何处理？</p>
-<p>根据service的等级，在Service注册时的属性中可指定SERVICE_RANKING</p>
-<p>等级也相同，看谁的PID小</p>
-<p>6.每个bundle定义了自己的classloader</p>
-<p>7.</p>
-<p>注入bean的方式通过Hessian进行远程服务调用，注入的bean可以配置ServiceUrl(http格式的地址)和ServiceInterface</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/13/osgi/" data-id="ck8yisc1u0000yof32vyya0fd" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -611,6 +620,10 @@
       <ul>
         
           <li>
+            <a href="/2020/11/13/Angular/">Angular</a>
+          </li>
+        
+          <li>
             <a href="/2020/11/05/javascript%E6%A8%A1%E5%9D%97%E5%8C%96/">javascript模块化</a>
           </li>
         
@@ -624,10 +637,6 @@
         
           <li>
             <a href="/2020/05/29/WebMVCConfigurer/">WebMVCConfigurer</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/22/MyBatis%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98%E5%92%8C%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98/">MyBatis一级缓存和二级缓存</a>
           </li>
         
       </ul>
